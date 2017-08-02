@@ -5,7 +5,7 @@ This is a Docker container pre-built with python tools you can use for data anal
 ## Contains
 
 [Scientific python stack](https://www.scipy.org/about.html) ([Anaconda version](https://www.continuum.io/what-is-anaconda); e.g. numpy, pandas)   
-[Brain Imaging Analysis Toolkit](http://brainiak.org/)  
+[Brain Imaging Analysis Kit](http://brainiak.org/)  
 [Neurolearn Toolbox](http://neurolearn.readthedocs.io/en/latest/)  
 [PyMVPA](http://www.pymvpa.org/)  
 [Hypertools](http://hypertools.readthedocs.io/en/latest/index.html)  
