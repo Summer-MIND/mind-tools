@@ -28,19 +28,21 @@ This is a Docker container pre-built with python tools you can use for data anal
 3. Download the docker image from [docker hub](https://hub.docker.com/r/ejolly/mindtools/) and build it:
     - Open a terminal and enter:
     - `docker pull ejolly/mind-tools`
-4. Create a new interactive container
-    - `docker run -it -p 8888:8888 --name MIND ejolly/mindtools`
-    - You should now see the `root@` prefix in your terminal, if so you're running a shell from *within* your the container!
+4. Create a new persistent interactive container (*only required once*)
+    - The command below will create a new container that will map your computer's `Desktop` to `/mnt` within the container, so that location is shared between your host OS and the container. You can change what folder you want to share by editing the path in the command below. The command will also share port `9999` with your host computer so any jupyter notebooks launched from *within* the container should not conflict with other notebooks you may already have running. Container notebooks will be accessible at `localhost:9999` in your browser
+    - `docker run -it -p 9999:9999 --name MIND -v ~/Desktop:/mnt ejolly/mind-tools `
+    - You should now see the `root@` prefix in your terminal, if so you've successfully created a container and are running a shell from *inside*!
 5. Execute commands as desired:
     - Launch a jupyter notebook:
-        - `jupyter notebook --port=8888 --no-browser --ip=0.0.0.0`
+        - `jupyter notebook --port=9999 --no-browser --ip=0.0.0.0 --allow-root`
+        - Navigate to `localhost:9999` in your browser to access the notebook
     - Open ipython from the command line
         - `ipython` at the command prompt
-6. Close container with `ctrl + c`
+    - Run bash commands, e.g
+        - `which python`
+6. Close container with `ctrl + d`
 7. Reopen container with (in a terminal on your own computer from any directory):
-    - `docker start MIND`
-    - `docker attach MIND`
-    - (press enter)
+    - `docker start MIND && docker attach MIND`
 
 
 ## Helpful commands

@@ -1,5 +1,6 @@
 FROM debian:latest
 
+# Install necessary linux packages from apt-get
 RUN apt-get update --fix-missing && apt-get install -y eatmydata
 
 RUN eatmydata apt-get install -y wget bzip2 ca-certificates \
@@ -36,4 +37,5 @@ RUN pip install git+https://github.com/IntelPNI/brainiak \
     pynv \
     seaborn
 
+# What should run when the container is launched
 ENTRYPOINT ["/bin/bash"]
