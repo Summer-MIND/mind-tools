@@ -1,6 +1,6 @@
 # mind-tools
 
-This is a Docker container pre-built with python tools you can use for data analysis and workshop demos.
+This is a Docker container pre-built with python tools you can use for data analysis and workshop demos during the [Methods in Neuroscience at Dartmouth](https://summer-mind.github.io/) summer school.
 
 ## Contains
 
