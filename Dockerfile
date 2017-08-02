@@ -1,19 +1,39 @@
-FROM continuumio/anaconda3:latest
+FROM debian:latest
 
-RUN conda update anaconda -y \
-    && apt-get update \
-    && apt-get install -y eatmydata \
-    && eatmydata apt-get install -y \
+RUN apt-get update --fix-missing && apt-get install -y eatmydata
+
+RUN eatmydata apt-get install -y wget bzip2 ca-certificates \
+    libglib2.0-0 libxext6 libsm6 libxrender1 \
     git \
     libfreetype6-dev \
     swig \
     mpich \
     pkg-config \
-    && conda create -n py34 python=3.4 anaconda
+    gcc
 
-RUN ["/bin/bash", "-c", "source activate py34 \
-    && pip install git+https://github.com/IntelPNI/brainiak \
-    nltools nilearn hypertools pymvpa2 mne deepdish nelpy dask pynv seaborn"]
+# Install anaconda
+RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
+    wget --quiet https://repo.continuum.io/archive/Anaconda3-4.4.0-Linux-x86_64.sh -O ~/anaconda.sh && \
+    /bin/bash ~/anaconda.sh -b -p /opt/conda && \
+    rm ~/anaconda.sh
 
-ENTRYPOINT ["/bin/bash", "-c"]
-CMD ["source activate py34 && /bin/bash"]
+# Setup anaconda path
+ENV PATH /opt/conda/bin:$PATH
+
+# Install gcc to make it work with brainiak
+RUN ["/bin/bash", "-c", "conda install -y gcc"]
+
+# Install packages needed
+RUN pip install git+https://github.com/IntelPNI/brainiak \
+    nltools \
+    nilearn \
+    hypertools \
+    pymvpa2 \
+    mne \
+    deepdish \
+    nelpy \
+    dask \
+    pynv \
+    seaborn
+
+ENTRYPOINT ["/bin/bash"]
