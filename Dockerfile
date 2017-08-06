@@ -12,7 +12,9 @@ RUN eatmydata apt-get install -y wget bzip2 ca-certificates \
     pkg-config \
     gcc \
     wget \
-    curl
+    curl \
+    vim \
+    nano
 
 # Install anaconda
 RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
