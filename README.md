@@ -25,7 +25,7 @@ This is a Docker container pre-built with python tools you can use for data anal
     - [Ubuntu](https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/)
     - [Debian](https://docs.docker.com/engine/installation/linux/docker-ce/debian/)
 2. Launch the Docker daemon and adjust the preferences to allocate sufficient resources (e.g. > 4GB RAM)
-3. Download the docker image from [docker hub](https://hub.docker.com/r/ejolly/mindtools/) and build it:
+3. Download the docker image from [docker hub](https://hub.docker.com/r/ejolly/mind-tools/) and build it:
     - Open a terminal and enter:
     - `docker pull ejolly/mind-tools`
 4. Create a new persistent interactive container (*only required once*)
