@@ -42,8 +42,22 @@ RUN pip install git+https://github.com/IntelPNI/brainiak \
     pynv \
     seaborn
 
-RUN conda create -n py27 python=2.7 anaconda
+RUN conda create -n py27 python=2.7
 RUN source activate py27
+RUN conda install -y numpy \
+    scipy \
+    pandas \
+    cython \
+    joblib \
+    memory_profiler \
+    munkres \
+    numexpr \
+    psutil \
+    scikit-learn \
+    ipython \
+    matplotlib \
+    jupyter \
+    seaborn
 RUN pip install git+git://github.com/bnpy/bnpy.git
 
 # What should run when the container is launched
