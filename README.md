@@ -33,6 +33,9 @@ This is a Docker container pre-built with python tools you can use for data anal
     - `docker run -it -p 9999:9999 --name MIND -v ~/Desktop:/mnt ejolly/mind-tools `
     - You should now see the `root@` prefix in your terminal, if so you've successfully created a container and are running a shell from *inside*!
 5. Execute commands as desired:
+    - Switch Python environment:
+        - Python 3.6 is active by default; if you want to switch to
+          Python 2.7, type `source activate py27`
     - Launch a jupyter notebook:
         - `jupyter notebook --port=9999 --no-browser --ip=0.0.0.0 --allow-root`
         - Navigate to `localhost:9999` in your browser to access the notebook
