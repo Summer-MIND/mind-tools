@@ -14,7 +14,8 @@ RUN eatmydata apt-get install -y wget bzip2 ca-certificates \
     wget \
     curl \
     vim \
-    nano
+    nano \
+    libgl1-mesa-glx
 
 # Install anaconda
 RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
@@ -40,6 +41,24 @@ RUN pip install git+https://github.com/IntelPNI/brainiak \
     dask \
     pynv \
     seaborn
+
+RUN conda create -n py27 python=2.7
+RUN ["/bin/bash", "-c", "source activate py27 && \
+    conda install -y numpy \
+    scipy \
+    pandas \
+    cython \
+    joblib \
+    memory_profiler \
+    numexpr \
+    psutil \
+    scikit-learn \
+    ipython \
+    matplotlib \
+    jupyter \
+    seaborn && \ 
+    pip install git+git://github.com/bnpy/bnpy.git \
+    munkres"]
 
 # What should run when the container is launched
 ENTRYPOINT ["/bin/bash"]
