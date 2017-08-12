@@ -16,7 +16,8 @@ RUN eatmydata apt-get install -y wget bzip2 ca-certificates \
     vim \
     nano \
     libgl1-mesa-glx \
-    ffmpeg
+    ffmpeg \
+    fonts-liberation
 
 # Install anaconda
 RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
