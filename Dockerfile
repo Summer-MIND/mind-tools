@@ -43,22 +43,22 @@ RUN pip install git+https://github.com/IntelPNI/brainiak \
     seaborn
 
 RUN conda create -n py27 python=2.7
-RUN source activate py27
-RUN conda install -y numpy \
+RUN ["/bin/bash", "-c", "source activate py27 && \
+    conda install -y numpy \
     scipy \
     pandas \
     cython \
     joblib \
     memory_profiler \
-    munkres \
     numexpr \
     psutil \
     scikit-learn \
     ipython \
     matplotlib \
     jupyter \
-    seaborn
-RUN pip install git+git://github.com/bnpy/bnpy.git
+    seaborn && \ 
+    pip install git+git://github.com/bnpy/bnpy.git \
+    munkres"]
 
 # What should run when the container is launched
 ENTRYPOINT ["/bin/bash"]
