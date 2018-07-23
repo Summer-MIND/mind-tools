@@ -21,22 +21,19 @@ RUN eatmydata apt-get install -y wget bzip2 ca-certificates \
 
 # Install anaconda
 RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
-    wget --quiet https://repo.continuum.io/archive/Anaconda3-4.4.0-Linux-x86_64.sh -O ~/anaconda.sh && \
+    wget --quiet https://repo.continuum.io/archive/Anaconda3-5.2.0-Linux-x86_64.sh -O ~/anaconda.sh && \
     /bin/bash ~/anaconda.sh -b -p /opt/conda && \
     rm ~/anaconda.sh
 
 # Setup anaconda path
 ENV PATH /opt/conda/bin:$PATH
 
-# Install gcc to make it work with brainiak
-RUN ["/bin/bash", "-c", "conda install -y gcc"]
-
 # Install packages needed
-RUN pip install git+https://github.com/IntelPNI/brainiak \
-    nltools \
+RUN conda install -c brainiak -c defaults -c conda-forge brainiak
+RUN pip install git+https://github.com/ljchang/neurolearn
+RUN pip install pymvpa2  \
     nilearn \
     hypertools \
-    pymvpa2 \
     mne \
     deepdish \
     nelpy \
@@ -58,7 +55,7 @@ RUN ["/bin/bash", "-c", "source activate py27 && \
     ipython \
     matplotlib \
     jupyter \
-    seaborn && \ 
+    seaborn && \
     pip install git+git://github.com/bnpy/bnpy.git \
     munkres"]
 

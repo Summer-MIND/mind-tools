@@ -1,6 +1,6 @@
 # mind-tools
 
-This is a Docker container pre-built with python tools you can use for data analysis and workshop demos during the [Methods in Neuroscience at Dartmouth](https://summer-mind.github.io/) summer school.
+This is a Docker container pre-built with **Python 3** tools you can use for data analysis and workshop demos during the [Methods in Neuroscience at Dartmouth](https://summer-mind.github.io/) summer school 2018.
 
 ## Contains
 
@@ -25,9 +25,8 @@ This is a Docker container pre-built with python tools you can use for data anal
     - [Ubuntu](https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/)
     - [Debian](https://docs.docker.com/engine/installation/linux/docker-ce/debian/)
 2. Launch the Docker daemon and adjust the preferences to allocate sufficient resources (e.g. > 4GB RAM)
-3. Download the docker image from [docker hub](https://hub.docker.com/r/ejolly/mind-tools/) and build it:
-    - Open a terminal and enter:
-    - `docker pull ejolly/mind-tools`
+3. Download the docker image from [docker hub](https://hub.docker.com/r/ejolly/mind-tools/):
+    - Open a terminal and enter `docker pull ejolly/mind-tools`  
 4. Create a new persistent interactive container (*only required once*)
     - The command below will create a new container that will map your computer's `Desktop` to `/mnt` within the container, so that location is shared between your host OS and the container. You can change what folder you want to share by editing the path in the command below. The command will also share port `9999` with your host computer so any jupyter notebooks launched from *within* the container should not conflict with other notebooks you may already have running. Container notebooks will be accessible at `localhost:9999` in your browser
     - `docker run -it -p 9999:9999 --name MIND -v ~/Desktop:/mnt ejolly/mind-tools `
@@ -79,7 +78,3 @@ Free free to contact Eshin or Matteo regarding any issues you run into when sett
 Eshin:  
 @ejolly (Slack)  
 eshin.jolly@gmail.com  
-
-Matteo:  
-@mvdoc (Slack)  
-mvdoc.gr@dartmouth.edu
