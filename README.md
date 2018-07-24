@@ -22,7 +22,7 @@ This is a Docker container pre-built with **Python 3** tools you can use for dat
 1. You can always fire up the container by typing the following into a terminal
     - `docker start MIND && docker attach MIND`
     - You should not see the `root@` prefix, letting you know you're inside the container
-2. You can easily open a new jupyter notebook session by typing the command `jp` from within the container. Just navigate to `localhost:9999` in your web-browser to access the notebook.
+2. You can easily open a new jupyter notebook session by typing the command `jp` or a new jupyter lab session by typing `jl` from within the container. Just navigate to `localhost:9999` in your web-browser to access them.
 3. To switch from Python 3 to Python 2 (*not recommended unless absolutely necessary*) just type `source activate py27` from within the container and `source deactivate` to switch back.
 4. Whatever folder on your host computer you shared with the container (e.g. `Desktop` in the above example) is located at `/mnt` within the container. You can interact with these files using normal unix commands (e.g. `cd`, `mv`, etc)
 5. Open up a second terminal from within the running container with running the following command in another terminal window `docker exec -it MIND bash`

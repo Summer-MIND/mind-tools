@@ -63,5 +63,6 @@ RUN ["/bin/bash", "-c", "source activate py27 && \
 RUN conda clean --all -y && apt-get autoremove
 
 RUN echo 'alias jp="jupyter notebook --port=9999 --no-browser --ip=0.0.0.0 --allow-root"' >> /root/.bashrc
+RUN echo 'alias jl="jupyter lab --port=9999 --no-browser --ip=0.0.0.0 --allow-root"' >> /root/.bashrc
 # What should run when the container is launched
 ENTRYPOINT ["/bin/bash"]
