@@ -40,3 +40,4 @@ This is a Docker container pre-built with **Python 3** tools you can use for dat
 [Nelpy](https://github.com/eackermann/nelpy)  
 [Dask](https://dask.pydata.org/en/latest/)  
 [Nilearn](http://nilearn.github.io/)  
+[SuperEEG](http://supereeg.readthedocs.io/en/latest/)

@@ -39,7 +39,8 @@ RUN pip install pymvpa2  \
     nelpy \
     dask \
     pynv \
-    seaborn
+    seaborn \
+    supereeg
 
 RUN conda create -n py27 python=2.7
 RUN ["/bin/bash", "-c", "source activate py27 && \
