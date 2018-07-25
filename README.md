@@ -21,11 +21,11 @@ This is a Docker container pre-built with **Python 3** tools you can use for dat
 ## Using the container after setup
 1. You can always fire up the container by typing the following into a terminal
     - `docker start MIND && docker attach MIND`
-    - You should not see the `root@` prefix, letting you know you're inside the container
-2. You can easily open a new jupyter notebook session by typing the command `jp` or a new jupyter lab session by typing `jl` from within the container. Just navigate to `localhost:9999` in your web-browser to access them.
-3. To switch from Python 3 to Python 2 (*not recommended unless absolutely necessary*) just type `source activate py27` from within the container and `source deactivate` to switch back.
+    - When you see the `root@` prefix, letting you know you're inside the container
+2. For convenience we have setup simple commands to easily open a new jupyter notebook session by typing `jp` or a new jupyter lab session by typing `jl` from within the container in the shared folder you specified during setup. Just navigate to `localhost:9999` in your web-browser to access them.
+3. We have provided Python 2 within the container as well, just select it from the drop down menu in jupyter notebook, or click on the icon in jupyter lab to use it. **Note** Python 2 is provided purely for compatibility reasons and therefore only includes a few core packages (e.g. numpy). It does **not** include all the same installed packages that come with Python 3.
 4. Whatever folder on your host computer you shared with the container (e.g. `Desktop` in the above example) is located at `/mnt` within the container. You can interact with these files using normal unix commands (e.g. `cd`, `mv`, etc)
-5. Open up a second terminal from within the running container with running the following command in another terminal window `docker exec -it MIND bash`
+5. To open up a second terminal from within the running container, type the following command in another terminal window `docker exec -it MIND bash`
 6. Close a running container with `ctrl + d` from the same terminal you used to launch the container, or `docker stop MIND` from any other terminal
 
 ## Installed Software
@@ -41,3 +41,4 @@ This is a Docker container pre-built with **Python 3** tools you can use for dat
 [Dask](https://dask.pydata.org/en/latest/)  
 [Nilearn](http://nilearn.github.io/)  
 [SuperEEG](http://supereeg.readthedocs.io/en/latest/)
+[HMMLearn](http://hmmlearn.readthedocs.io/en/latest/)

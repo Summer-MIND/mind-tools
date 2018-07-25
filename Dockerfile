@@ -34,18 +34,11 @@ RUN ["/bin/bash", "-c", "source activate py27 && \
     conda install -y numpy \
     scipy \
     pandas \
-    cython \
-    joblib \
-    memory_profiler \
-    numexpr \
-    psutil \
     scikit-learn \
     ipython \
     matplotlib \
     jupyter \
-    seaborn && \
-    pip install git+git://github.com/bnpy/bnpy.git \
-    munkres"]
+    seaborn && python -m ipykernel install"]
 
 # Install packages needed
 RUN conda install -c brainiak -c defaults -c conda-forge brainiak
@@ -58,14 +51,15 @@ RUN pip install git+https://github.com/ljchang/neurolearn && pip install git+htt
     dask \
     pynv \
     seaborn \
-    supereeg
+    supereeg && python -m ipykernel install
 
 # Clean up
 RUN conda clean --all -y && apt-get autoremove
 
-# Create some command aliases
+# Create some command aliases and turn off jupyter notebook tokens
 RUN echo 'alias jp="jupyter notebook --port=9999 --no-browser --ip=0.0.0.0 --allow-root"' >> /root/.bashrc
 RUN echo 'alias jl="jupyter lab --port=9999 --no-browser --ip=0.0.0.0 --allow-root"' >> /root/.bashrc
+RUN mkdir -p /root/.jupyter && echo "c.NotebookApp.token = u''" >> /root/.jupyter/jupyter_notebook_config.py && echo "c.NotebookApp.notebook_dir = '/mnt'" >> /root/.jupyter/jupyter_notebook_config.py
 
 # What should we run when the container is launched
 ENTRYPOINT ["/bin/bash"]
