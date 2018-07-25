@@ -28,20 +28,7 @@ RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
 # Setup anaconda path
 ENV PATH /opt/conda/bin:$PATH
 
-# Install packages needed
-RUN conda install -c brainiak -c defaults -c conda-forge brainiak
-RUN pip install git+https://github.com/ljchang/neurolearn
-RUN pip install pymvpa2  \
-    nilearn \
-    hypertools \
-    mne \
-    deepdish \
-    nelpy \
-    dask \
-    pynv \
-    seaborn \
-    supereeg
-
+# Create compatibility Python 2.7 environment
 RUN conda create -n py27 python=2.7
 RUN ["/bin/bash", "-c", "source activate py27 && \
     conda install -y numpy \
@@ -60,10 +47,25 @@ RUN ["/bin/bash", "-c", "source activate py27 && \
     pip install git+git://github.com/bnpy/bnpy.git \
     munkres"]
 
+# Install packages needed
+RUN conda install -c brainiak -c defaults -c conda-forge brainiak
+RUN pip install git+https://github.com/ljchang/neurolearn && pip install git+https://github.com/eackermann/hmmlearn.git && pip install pymvpa2  \
+    nilearn \
+    hypertools \
+    mne \
+    deepdish \
+    nelpy \
+    dask \
+    pynv \
+    seaborn \
+    supereeg
+
 # Clean up
 RUN conda clean --all -y && apt-get autoremove
 
+# Create some command aliases
 RUN echo 'alias jp="jupyter notebook --port=9999 --no-browser --ip=0.0.0.0 --allow-root"' >> /root/.bashrc
 RUN echo 'alias jl="jupyter lab --port=9999 --no-browser --ip=0.0.0.0 --allow-root"' >> /root/.bashrc
-# What should run when the container is launched
+
+# What should we run when the container is launched
 ENTRYPOINT ["/bin/bash"]
